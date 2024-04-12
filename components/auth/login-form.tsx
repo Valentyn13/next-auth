@@ -18,12 +18,19 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import { useSearchParams } from "next/navigation";
 import { login } from "@/actions/login";
-import { log } from "console";
+import Link from "next/link";
+
 const LoginForm = () => {
-    const [isPending, startTransition] = useTransition();
-    const [error, setError] = useState<string | undefined>('');
-    const [success, setSuccess] = useState<string | undefined>('');
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email is already in use with anothter provider"
+      : "";
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -34,16 +41,17 @@ const LoginForm = () => {
   });
 
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     startTransition(() => {
-        login(data).then((response) => {
-          setError(response.error);
-          setSuccess(response.success);
-        });
+      login(data).then((response) => {
+        setError(response?.error);
+        // TODO: Add when we add 2FA
+        setSuccess(response?.success);
+      });
     });
-  }
+  };
   return (
     <CardWrapper
       headerLabel="Welcome Back"
@@ -67,6 +75,9 @@ const LoginForm = () => {
                 </FormItem>
               )}
             />
+            <Button size='sm' variant="link" asChild className="px-0">
+              <Link href='/auth/reset'>Forgot password?</Link>
+            </Button>
             <FormField
               control={form.control}
               name="password"
@@ -81,7 +92,7 @@ const LoginForm = () => {
               )}
             />
           </div>
-          <FormError message={error} />
+          <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button type="submit" className="w-full">
             Login
