@@ -5,6 +5,7 @@ const LoginSchema = z.object({
   password: z.string().min(1, {
     message: "Password must be at least 1 characters long",
   }),
+  code: z.optional(z.string()),
 });
 
 const ResetSchema = z.object({
