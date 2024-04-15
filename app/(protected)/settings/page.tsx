@@ -10,9 +10,7 @@ const SettingsPage = () => {
         logout();
     }
     return(
-        <div>
-            <h1>Settings</h1>
-            <p>{JSON.stringify(session)}</p>
+        <div className="bg-white p-10 rounded-xl">
             <button onClick={handleSignOut} type="submit">Sign out</button>
         </div>
     )
