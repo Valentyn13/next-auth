@@ -1,7 +1,8 @@
 "use client";
 
-import { logout } from "@/actions/logout";
 import { ReactNode, FC } from "react";
+
+import { logout } from "@/actions/logout";
 
 type Properties = {
   children?: ReactNode;

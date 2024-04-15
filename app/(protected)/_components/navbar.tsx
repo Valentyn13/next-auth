@@ -1,11 +1,11 @@
 "use client";
 
-import { UserButton } from "@/components/auth/user-button";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { AppRoutes } from "@/constants/app-routes";
-import Link from "next/link";
-
-import { usePathname } from "next/navigation";
+import { UserButton } from "@/components/auth/user-button";
 
 const Navbar = () => {
   const pathname = usePathname();

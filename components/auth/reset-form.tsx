@@ -1,11 +1,19 @@
 "use client";
 
 import * as z from "zod";
-import { CardWrapper } from "./card-wrapper";
 import { useForm } from "react-hook-form";
+import { useState, useTransition } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ResetSchema } from "@/schemas";
-import { useState, useTransition } from "react";
+
+import { reset } from "@/actions/reset";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { AppRoutes } from "@/constants/app-routes";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
+import { CardWrapper } from "@/components/auth/card-wrapper";
 import {
   Form,
   FormControl,
@@ -14,12 +22,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { FormError } from "../form-error";
-import { FormSuccess } from "../form-success";
-import { reset } from "@/actions/reset";
-import { AppRoutes } from "@/constants/app-routes";
 
 const ResetForm = () => {
   const [isPending, startTransition] = useTransition();

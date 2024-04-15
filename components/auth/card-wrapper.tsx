@@ -1,11 +1,12 @@
 "use client";
 
 import { ReactNode, FC } from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { Header } from "./header";
-import { Social } from "./social";
-import { BackButton } from "./back-button";
+
+import { Header } from "@/components/auth/header";
+import { Social } from "@/components/auth/social";
 import { AppRoutes } from "@/constants/app-routes";
+import { BackButton } from "@/components/auth/back-button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 type Properties = {
   children: ReactNode;

@@ -1,12 +1,13 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { CardWrapper } from "./card-wrapper";
 import { BeatLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
-import { newVerification } from "@/actions/new-verification";
-import { FormError } from "../form-error";
-import { FormSuccess } from "../form-success";
+import React, { useCallback, useEffect, useState } from "react";
+
 import { AppRoutes } from "@/constants/app-routes";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
+import { CardWrapper } from "@/components/auth/card-wrapper";
+import { newVerification } from "@/actions/new-verification";
 
 const NewVerifocationForm = () => {
   const searchParams = useSearchParams();

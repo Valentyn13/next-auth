@@ -2,6 +2,7 @@
 
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/navigation";
+
 import { AppRoutes } from "@/constants/app-routes";
 
 type Properties = {

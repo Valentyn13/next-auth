@@ -1,11 +1,20 @@
 "use client";
 
 import * as z from "zod";
-import { CardWrapper } from "./card-wrapper";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "@/schemas";
 import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+
+import { LoginSchema } from "@/schemas";
+import { login } from "@/actions/login";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { AppRoutes } from "@/constants/app-routes";
+import { FormError } from "@/components/form-error";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormSuccess } from "@/components/form-success";
+import { CardWrapper } from "@/components/auth/card-wrapper";
 import {
   Form,
   FormControl,
@@ -13,15 +22,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { FormError } from "../form-error";
-import { FormSuccess } from "../form-success";
-import { useSearchParams } from "next/navigation";
-import { login } from "@/actions/login";
-import Link from "next/link";
-import { AppRoutes } from "@/constants/app-routes";
+} from "@/components/ui/form";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();

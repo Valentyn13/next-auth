@@ -1,5 +1,5 @@
-import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { FC } from "react";
+import { CheckCircledIcon } from "@radix-ui/react-icons";
 
 type Properties = {
   message?: string;

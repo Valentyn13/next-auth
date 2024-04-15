@@ -1,5 +1,6 @@
-import { AppRoutes } from "@/constants/app-routes";
 import { Resend } from "resend";
+
+import { AppRoutes } from "@/constants/app-routes";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

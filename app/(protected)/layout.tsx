@@ -1,4 +1,5 @@
 import { ReactNode, FC } from "react";
+
 import { Navbar } from "./_components/navbar";
 
 type Propterites = {

@@ -1,8 +1,9 @@
 "use client";
 
 import { FC } from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 type Properties = {
   href: string;

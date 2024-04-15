@@ -1,6 +1,7 @@
-import { AppRoutes } from "@/constants/app-routes";
-import { CardWrapper } from "./card-wrapper";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+
+import { AppRoutes } from "@/constants/app-routes";
+import { CardWrapper } from "@/components/auth/card-wrapper";
 
 const ErrorCard = () => {
   return (
