@@ -5,6 +5,7 @@ import {db} from "@/lib/db";
 import { getUserById } from "./data/user";
 import { UserRole } from "@prisma/client";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmaion";
+import { AppRoutes } from "./constants/app-routes";
 
 export const {
   handlers: { GET, POST },
@@ -13,8 +14,8 @@ export const {
   signOut,
 } = NextAuth({
   pages:{
-    signIn:'/auth/login',
-    error:'/auth/error',
+    signIn:AppRoutes.LOGIN,
+    error:AppRoutes.ERROR,
   },
   events:{
      async linkAccount({user}) {

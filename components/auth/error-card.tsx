@@ -1,3 +1,4 @@
+import { AppRoutes } from '@/constants/app-routes'
 import { CardWrapper } from './card-wrapper'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 
@@ -5,7 +6,7 @@ const ErrorCard = () => {
     return(
         <CardWrapper
             headerLabel='Oops! Something went wrong'
-            backButtonHref='/auth/login'
+            backButtonHref={AppRoutes.LOGIN}
             backButtonLabel='Back to login'
         >
             <div className='w-full flex justify-center'>

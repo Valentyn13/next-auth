@@ -19,6 +19,7 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { register } from "@/actions/register";
+import { AppRoutes } from "@/constants/app-routes";
 
 const RegisterForm = () => {
     const [isPending, startTransition] = useTransition();
@@ -49,7 +50,7 @@ const RegisterForm = () => {
     <CardWrapper
       headerLabel="Welcome Back"
       backButtonLabel="Have an account? Go to login page"
-      backButtonHref="/auth/login"
+      backButtonHref={AppRoutes.LOGIN}
       showSocial
     >
       <Form {...form}>

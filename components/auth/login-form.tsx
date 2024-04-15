@@ -21,6 +21,7 @@ import { FormSuccess } from "../form-success";
 import { useSearchParams } from "next/navigation";
 import { login } from "@/actions/login";
 import Link from "next/link";
+import { AppRoutes } from "@/constants/app-routes";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -68,7 +69,7 @@ const LoginForm = () => {
     <CardWrapper
       headerLabel="Welcome Back"
       backButtonLabel="Don't have an account?"
-      backButtonHref="/auth/register"
+      backButtonHref={AppRoutes.REGISTER}
       showSocial
     >
       <Form {...form}>
@@ -115,7 +116,7 @@ const LoginForm = () => {
                   )}
                 />
                 <Button size="sm" variant="link" asChild className="px-0">
-                  <Link href="/auth/reset">Forgot password?</Link>
+                  <Link href={AppRoutes.RESET}>Forgot password?</Link>
                 </Button>
                 <FormField
                   control={form.control}

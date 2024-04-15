@@ -5,12 +5,13 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Header } from "./header";
 import { Social } from "./social";
 import { BackButton } from "./back-button";
+import { AppRoutes } from "@/constants/app-routes";
 
 type Properties = {
   children: ReactNode;
   headerLabel: string;
   backButtonLabel: string;
-  backButtonHref: string;
+  backButtonHref: AppRoutes;
   showSocial?: boolean;
 };
 

@@ -19,6 +19,7 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { reset } from "@/actions/reset";
+import { AppRoutes } from "@/constants/app-routes";
 
 const ResetForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -46,7 +47,7 @@ const ResetForm = () => {
     <CardWrapper
       headerLabel="Forgot your password?"
       backButtonLabel="Back to login"
-      backButtonHref="/auth/login"
+      backButtonHref={AppRoutes.LOGIN}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

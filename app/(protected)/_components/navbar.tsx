@@ -1,6 +1,7 @@
 'use client'
 import { UserButton } from "@/components/auth/user-button"
 import { Button } from "@/components/ui/button"
+import { AppRoutes } from "@/constants/app-routes"
 import Link from "next/link"
 
 import { usePathname } from "next/navigation"
@@ -11,23 +12,23 @@ const Navbar = () => {
     return(
         <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm">
             <div className="flex gap-x-2">
-            <Button asChild variant={pathname === '/server' ? 'default' : 'outline'}>
-                <Link href='/server'>
+            <Button asChild variant={pathname === AppRoutes.SERVER ? 'default' : 'outline'}>
+                <Link href={AppRoutes.SERVER}>
                     Server
                 </Link>
             </Button>
-            <Button asChild variant={pathname === '/client' ? 'default' : 'outline'}>
-                <Link href='/client'>
+            <Button asChild variant={pathname === AppRoutes.CLIENT ? 'default' : 'outline'}>
+                <Link href={AppRoutes.CLIENT}>
                     Client
                 </Link>
             </Button>
-            <Button asChild variant={pathname === '/admin' ? 'default' : 'outline'}>
-                <Link href='/admin'>
+            <Button asChild variant={pathname === AppRoutes.ADMIN ? 'default' : 'outline'}>
+                <Link href={AppRoutes.ADMIN}>
                     Admin
                 </Link>
             </Button>
-            <Button asChild variant={pathname === '/settings' ? 'default' : 'outline'}>
-                <Link href='/settings'>
+            <Button asChild variant={pathname === AppRoutes.SETTINGS ? 'default' : 'outline'}>
+                <Link href={AppRoutes.SETTINGS}>
                     Settings
                 </Link>
             </Button>

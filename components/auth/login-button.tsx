@@ -2,6 +2,7 @@
 
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import { AppRoutes } from "@/constants/app-routes";
 
 type Properties = {
     children: ReactNode;
@@ -12,7 +13,7 @@ type Properties = {
 const LoginButton:FC<Properties> = ({children, mode = 'redirect', asChild}) => {
     const router = useRouter();
     const onClick = () => {
-        router.push('/auth/login')
+        router.push(AppRoutes.LOGIN)
     }
 
     if(mode === 'modal'){

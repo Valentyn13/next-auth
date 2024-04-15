@@ -1,19 +1,22 @@
+import { ApiRoutes } from "./constants/api-routes"
+import { AppRoutes } from "./constants/app-routes"
+
 export const publicRoutes = [
-    "/",
-    "/auth/new-verification",
+    AppRoutes.ROOT,
+    AppRoutes.VERIFICATION,
 ]
 
 export const authRoutes = [
-    "/auth/login",
-    "/auth/register",
-    "/auth/error",
-    "/auth/forgot-password",
-    "/auth/reset-password",
-    "/auth/reset",
-    "/auth/new-password",
+    AppRoutes.LOGIN,
+    AppRoutes.REGISTER,
+    AppRoutes.ERROR,
+    AppRoutes.FORGOT_PASSWORD,
+    AppRoutes.RESET_PASSWORD,
+    AppRoutes.RESET,
+    AppRoutes.NEW_PASSWORD,
 ]
 
-export const apiAuthPrefix = '/api/auth'
+export const apiAuthPrefix = ApiRoutes.API_PREFIX
 
 
-export const DEFAULT_LOGIN_REDIRECT = '/settings'
+export const DEFAULT_LOGIN_REDIRECT = AppRoutes.SETTINGS
