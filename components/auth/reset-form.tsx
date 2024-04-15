@@ -59,7 +59,11 @@ const ResetForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter your email" type="email" />
+                    <Input
+                      {...field}
+                      placeholder="Enter your email"
+                      type="email"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

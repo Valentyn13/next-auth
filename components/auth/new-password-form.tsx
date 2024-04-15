@@ -23,7 +23,6 @@ import { newPassword } from "@/actions/new-password";
 import { AppRoutes } from "@/constants/app-routes";
 
 const NewPasswordForm = () => {
-
   const searchParams = useSearchParams();
 
   const token = searchParams.get("token");

@@ -6,7 +6,7 @@ import { getUserByEmail } from "@/data/user";
 
 import { getVerificationTokenByToken } from "@/data/verification-token";
 
-export const newVerification = async (token: string) => {
+const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
 
   if (!existingToken) {
@@ -34,12 +34,15 @@ export const newVerification = async (token: string) => {
   await db.user.update({
     where: { id: existingUser.id },
     data: {
-        emailVerified: new Date(),
-        email: existingToken.email },
+      emailVerified: new Date(),
+      email: existingToken.email,
+    },
   });
 
   await db.verificationToken.delete({
     where: { id: existingToken.id },
   });
-  return {success:'Email verified successfully!!!!'}
+  return { success: "Email verified successfully!!!!" };
 };
+
+export { newVerification };

@@ -22,25 +22,18 @@ const CardWrapper: FC<Properties> = ({
   backButtonHref,
   showSocial = false,
 }) => {
-  return <Card className="w-[400px] shadow-md p-3">
-    <CardHeader>
-        <Header label={headerLabel}/>
-    </CardHeader>
-    <CardContent>
-        {children}
-    </CardContent>
-    {
-        showSocial && (
-            <Social/>
-        )
-    }
-    <CardFooter>
-        <BackButton
-            label={backButtonLabel}
-            href={backButtonHref}   
-        />
-    </CardFooter>
-</Card>;
+  return (
+    <Card className="w-[400px] shadow-md p-3">
+      <CardHeader>
+        <Header label={headerLabel} />
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+      {showSocial && <Social />}
+      <CardFooter>
+        <BackButton label={backButtonLabel} href={backButtonHref} />
+      </CardFooter>
+    </Card>
+  );
 };
 
 export { CardWrapper };

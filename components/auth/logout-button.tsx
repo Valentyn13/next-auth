@@ -1,23 +1,22 @@
-'use client'
+"use client";
 
 import { logout } from "@/actions/logout";
 import { ReactNode, FC } from "react";
 
 type Properties = {
- children?: ReactNode;
-}
+  children?: ReactNode;
+};
 
-const LogoutButton:FC<Properties> = ({children}) => {
+const LogoutButton: FC<Properties> = ({ children }) => {
+  const handleLogout = () => {
+    logout();
+  };
 
-    const handleLogout = () => {
-        logout();
-    }
+  return (
+    <span onClick={handleLogout} className="cursor-pointer">
+      {children}
+    </span>
+  );
+};
 
-    return(
-        <span onClick={handleLogout} className="cursor-pointer">
-            {children}
-        </span>
-    )
-}
-
-export {LogoutButton}
+export { LogoutButton };

@@ -22,9 +22,9 @@ import { register } from "@/actions/register";
 import { AppRoutes } from "@/constants/app-routes";
 
 const RegisterForm = () => {
-    const [isPending, startTransition] = useTransition();
-    const [error, setError] = useState<string | undefined>('');
-    const [success, setSuccess] = useState<string | undefined>('');
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
 
   const form = useForm<z.infer<typeof RegisterShema>>({
     resolver: zodResolver(RegisterShema),
@@ -36,16 +36,16 @@ const RegisterForm = () => {
   });
 
   const onSubmit = (data: z.infer<typeof RegisterShema>) => {
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     startTransition(() => {
-        register(data).then((response) => {
-          setError(response.error);
-          setSuccess(response.success);
-        });
+      register(data).then((response) => {
+        setError(response.error);
+        setSuccess(response.success);
+      });
     });
-  }
+  };
   return (
     <CardWrapper
       headerLabel="Welcome Back"
@@ -56,14 +56,18 @@ const RegisterForm = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
-          <FormField
+            <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Enter your name" type="text" />
+                    <Input
+                      {...field}
+                      placeholder="Enter your name"
+                      type="text"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

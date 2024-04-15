@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "./auth.config";
-import {db} from "@/lib/db";
+import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
 import { UserRole } from "@prisma/client";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmaion";
@@ -13,75 +13,75 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  pages:{
-    signIn:AppRoutes.LOGIN,
-    error:AppRoutes.ERROR,
+  pages: {
+    signIn: AppRoutes.LOGIN,
+    error: AppRoutes.ERROR,
   },
-  events:{
-     async linkAccount({user}) {
+  events: {
+    async linkAccount({ user }) {
       await db.user.update({
-        where: {id: user.id},
+        where: { id: user.id },
         data: {
-          emailVerified: new Date()
-        }
-      })
-     }
+          emailVerified: new Date(),
+        },
+      });
+    },
   },
-  callbacks:{
-    async signIn({user, account}) {
-      
-      if(account?.provider !== 'credentials'){
-        return true
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider !== "credentials") {
+        return true;
       }
 
-      const existingUser = await getUserById(user.id as string)
-      if(!existingUser || !existingUser.emailVerified) return false
-      
+      const existingUser = await getUserById(user.id as string);
+      if (!existingUser || !existingUser.emailVerified) return false;
+
       // TODO: add 2FA check here
-      if(existingUser.isTwoFactorEnabled){
-        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id)
+      if (existingUser.isTwoFactorEnabled) {
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
+          existingUser.id
+        );
 
-
-        if(!twoFactorConfirmation){
-          return false
+        if (!twoFactorConfirmation) {
+          return false;
         }
         // TODO: Delete two factor confirmation for next sign in
         await db.twoFactorConfirmation.delete({
-          where: {id: twoFactorConfirmation.id}
-        })
+          where: { id: twoFactorConfirmation.id },
+        });
       }
 
-      return true
+      return true;
     },
-    async session({session, token}) {
-      if(token.sub && session.user){
-        session.user.id = token.sub
+    async session({ session, token }) {
+      if (token.sub && session.user) {
+        session.user.id = token.sub;
       }
 
-      if(token.role && session.user){
-        session.user.role = token.role as UserRole
+      if (token.role && session.user) {
+        session.user.role = token.role as UserRole;
       }
 
-      if(session.user){
-        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean
+      if (session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
       }
 
-      return session
+      return session;
     },
-    async jwt({token}) {
-      if(!token.sub) return token
+    async jwt({ token }) {
+      if (!token.sub) return token;
 
-      const existingUser = await getUserById(token.sub)
+      const existingUser = await getUserById(token.sub);
 
-      if(!existingUser) return token
+      if (!existingUser) return token;
 
-      token.role = existingUser.role
-      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
+      token.role = existingUser.role;
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
-    }
+    },
   },
   adapter: PrismaAdapter(db),
-  session:{strategy: 'jwt'},
+  session: { strategy: "jwt" },
   ...authConfig,
 });

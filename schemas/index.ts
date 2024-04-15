@@ -10,16 +10,15 @@ const LoginSchema = z.object({
 
 const ResetSchema = z.object({
   email: z.string().email({
-    message: "Valid email is required"
+    message: "Valid email is required",
   }),
 });
 
 const NewPasswordShema = z.object({
-  password: z.string().min(6,{
-    message: "Password must be at least 6 characters long"
+  password: z.string().min(6, {
+    message: "Password must be at least 6 characters long",
   }),
 });
-
 
 const RegisterShema = z.object({
   email: z.string().email(),

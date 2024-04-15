@@ -5,7 +5,7 @@ import { getPasswordResetTokenByEmail } from "@/data/password-reset-token";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 import { db } from "@/lib/db";
 
-export const generateTwoFactorToken = async (email: string) => {
+const generateTwoFactorToken = async (email: string) => {
   const token = crypto.randomInt(100_000, 1_000_000).toString();
   const expires = new Date(new Date().getTime() + 3600 * 1000);
 
@@ -30,7 +30,7 @@ export const generateTwoFactorToken = async (email: string) => {
   return newTwoFactorToken;
 };
 
-export const generatePasswordResetToken = async (email: string) => {
+const generatePasswordResetToken = async (email: string) => {
   const token = uuid();
   const expires = new Date(new Date().getTime() + 3600 * 1000);
   const existingToken = await getPasswordResetTokenByEmail(email);
@@ -52,7 +52,7 @@ export const generatePasswordResetToken = async (email: string) => {
   return newPasswordResetToken;
 };
 
-export const generateVerificationToken = async (email: string) => {
+const generateVerificationToken = async (email: string) => {
   const token = uuid();
   const expires = new Date(new Date().getTime() + 3600 * 1000);
   const existingToken = await getVerificationTokenByEmail(email);
@@ -73,4 +73,10 @@ export const generateVerificationToken = async (email: string) => {
   });
 
   return newVerificationToken;
+};
+
+export {
+  generateTwoFactorToken,
+  generatePasswordResetToken,
+  generateVerificationToken,
 };
